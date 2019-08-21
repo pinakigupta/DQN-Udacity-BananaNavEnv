@@ -61,13 +61,10 @@ The task is episodic, and in order to solve the environment, your agent must get
 		target for a reasonably good agent.
 		g. breakpoint_score - if the score is greater than this threshold, network is checkpointed and training is finished. This can be set as a score 
 		target for a exceptionally good agent.
-2. model.py -   
+2. ddpg_agent.py -   
 
 		BUFFER_SIZE = int(1e5)  # replay buffer size
 		BATCH_SIZE = 64         # minibatch size
 		GAMMA = 0.99            # discount factor
 		TAU = 1e-3              # for soft update of target parameters
 		LR = 5e-4               # learning rate 
-		UPDATE_EVERY = 4        # how often to update the network
-		PRIORITY_EXPONENT = 0.5 # The raw priorities are raised to this exponent to have more uniform 
-                        # effect from all the experiences. Must be between 0 and 1.

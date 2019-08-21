@@ -12,8 +12,7 @@ class QNetwork(nn.Module):
             state_size (int): Dimension of each state
             action_size (int): Dimension of each action
             seed (int): Random seed
-            fc1_units (int): Number of nodes in first hidden layer
-            fc2_units (int): Number of nodes in second hidden layer
+            fc_units list[(int)]: List of Number of nodes in the hidden layers
         """
         super(QNetwork, self).__init__()
         self.seed = torch.manual_seed(seed)
@@ -23,9 +22,7 @@ class QNetwork(nn.Module):
             self.fc.append(nn.Linear(fc_unit_input_size, fc_unit_size))
             fc_unit_input_size = fc_unit_size
         self.fc.append(nn.Linear(fc_unit_input_size, action_size))
-        #self.fc1 = nn.Linear(state_size, fc1_units)
-        #self.fc2 = nn.Linear(fc1_units, fc2_units)
-        #self.fc3 = nn.Linear(fc2_units, action_size)
+
 
     def forward(self, state):
         """Build a network that maps state -> action values."""
@@ -33,7 +30,5 @@ class QNetwork(nn.Module):
         for fc_net in self.fc:
             y = fc_net(x)
             x = F.relu(y)
-        #x = F.relu(self.fc1(state))
-        #x = F.relu(self.fc2(x))
         return y
 
